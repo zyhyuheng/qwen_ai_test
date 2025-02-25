@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ai.qwen.qwen_ai_test.mapper.MyTestMapper">
+    <select id="findByNameAndEmailAndAge" resultType="com.example.ai.qwen.qwen_ai_test.entity.MyTest">
+        select * from mytest 
+        <where>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+    
+    <select id="findAll" resultType="com.example.ai.qwen.qwen_ai_test.entity.MyTest">
+        select * from mytest
+    </select>
+
+</mapper>
