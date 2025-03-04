@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ai.qwen.qwen_ai_test.mapper.StudentMapper">
+    <insert id="insert" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student (name, age, gender, class_name)
+        VALUES (#{name}, #{age}, #{gender}, #{className})
+    </insert>
+
+    <update id="update" parameterType="Student">
+        UPDATE student
+        SET name = #{name},
+            age = #{age},
+            gender = #{gender},
+            class_name = #{className}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM student WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" parameterType="Long" resultType="Student">
+        SELECT * FROM student WHERE id = #{id}
+    </select>
+<select id="selectPassingStudents" resultType="Student">
+    SELECT s.* FROM student s
+    JOIN score sc ON s.id = sc.student_id
+    WHERE sc.subject = #{subject} AND sc.score >= #{passScore}
+</select>
+
+<select id="selectStudentsByMinScore" resultType="Student">
+    SELECT DISTINCT s.* FROM student s
+    JOIN score sc ON s.id = sc.student_id
+    WHERE sc.score > #{minScore}
+</select>
+
+<select id="selectIdByName" parameterType="String" resultType="Long">
+    SELECT id FROM student WHERE name = #{name}
+</select>
+
+<select id="findAll" resultType="Student">
+    SELECT * FROM student
+</select>
+
+</mapper>

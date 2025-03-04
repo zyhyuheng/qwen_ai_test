@@ -12,6 +12,9 @@ import com.example.ai.qwen.qwen_ai_test.mapper.MyTestMapper;
 
 import dev.langchain4j.agent.tool.Tool;
 
+/**
+ * 服务名称需注册到AiFunctionAssistant中
+ */
 @Service
 public class MyTestAiService {
 

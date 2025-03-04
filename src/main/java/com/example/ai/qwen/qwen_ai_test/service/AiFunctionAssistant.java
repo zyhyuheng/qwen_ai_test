@@ -8,7 +8,7 @@ import reactor.core.publisher.Flux;
  * 注册在springboot容器中的名称，
  * 如果为自定义设置则默认为类名首字母小写
  */
-@AiService(tools = { "calculator","myTestAiService" })
+@AiService(tools = { "calculator","myTestAiService","scoreService" })
 public interface AiFunctionAssistant {
     /**
      * AI 函数调用聊天入口
